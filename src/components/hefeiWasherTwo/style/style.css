@@ -1,0 +1,103 @@
+.loading-warehouse-two {
+  width: 97vw;
+  height: calc(100vh - 3vw);
+  background: #040c31;
+  padding: 1.5vw;
+}
+.loading-warehouse-two .loading-warehouse-content {
+  width: 94vw;
+  height: calc(100vh - 6vw);
+  padding: 1.5vw;
+  border: 1px solid #1f40a9;
+  position: relative;
+  /*时间*/
+}
+.loading-warehouse-two .loading-warehouse-content > span {
+  position: absolute;
+  padding: 8px;
+  border-style: solid;
+  border-color: #1f40a9;
+}
+.loading-warehouse-two .loading-warehouse-content .row1 {
+  border-width: 3px 0 0 3px;
+  top: -2px;
+  left: -2px;
+}
+.loading-warehouse-two .loading-warehouse-content .row2 {
+  border-width: 3px 3px 0 0;
+  top: -2px;
+  right: -2px;
+}
+.loading-warehouse-two .loading-warehouse-content .col1 {
+  border-width: 0 0 3px 3px;
+  bottom: -2px;
+  left: -2px;
+}
+.loading-warehouse-two .loading-warehouse-content .col2 {
+  border-width: 0 3px 3px 0;
+  bottom: -2px;
+  right: -2px;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head {
+  height: 37px;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head div:first-child > dl {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1vw;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head div:last-child > dl {
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;
+  -o-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head div:last-child > dl dd {
+  color: #ceced8;
+  height: 37px;
+  line-height: 37px;
+  letter-spacing: 0.2vw;
+  font-weight: bold;
+  font-size: 1vw;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head div:last-child > dl dd:first-child {
+  color: #02b5ed;
+  margin-right: 0.5vw;
+}
+.loading-warehouse-two .loading-warehouse-content .loading-warehouse-head div:last-child > dl dd:nth-child(3) {
+  margin: 0 1.5vw;
+}
+.loading-warehouse-two .loading-warehouse-content .data-content {
+  width: 100%;
+  height: calc(100vh - 6vw - 37px);
+  overflow-y: auto;
+  /*顶部搜索*/
+  /* table*/
+}
+.loading-warehouse-two .loading-warehouse-content .data-content .input-search {
+  width: 10vw;
+  margin: 20px 0;
+}
+.loading-warehouse-two .loading-warehouse-content .data-content .table-details {
+  height: calc(100vh - 57vh);
+}
+.loading-warehouse-two .loading-warehouse-content .data-content .table-plug-in {
+  height: 40vh;
+}

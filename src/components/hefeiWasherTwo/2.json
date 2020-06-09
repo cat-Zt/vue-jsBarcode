@@ -1,0 +1,119 @@
+{
+    "message": "",
+    "id": null,
+    "result": "success",
+    "data": {
+        "data": [
+            {
+                "lotAtt06": "QZ总部1316020800303",
+                "rownum": "f9804daa-637a-497c-b015-936e27906e26",
+                "validFields": [
+                    "locCode",
+                    "lotAtt06",
+                    "qty",
+                    "shipNo",
+                    "skuCode",
+                    "skuName",
+                    "totalQty"
+                ],
+                "skuName": "MB55-V3006G 波轮全自动洗衣机 灰色 门盖透明烟灰 　 　 220V,1Ph 50Hz 　",
+                "qty": 12,
+                "locCode": "A06",
+                "totalQty": 72,
+                "rowState": null,
+                "skuCode": "0000255609",
+                "shipNo": "T1911132678905"
+            },
+            {
+                "lotAtt06": "QZ总部13190810000204",
+                "rownum": "5d82b309-9c42-4643-bac1-dc742d43dc45",
+                "validFields": [
+                    "locCode",
+                    "lotAtt06",
+                    "qty",
+                    "shipNo",
+                    "skuCode",
+                    "skuName",
+                    "totalQty"
+                ],
+                "skuName": "MB65-1000H 波轮全自动洗衣机 智利灰 门盖透明烟灰 　 　 220V,1Ph 50Hz 　",
+                "qty": 60,
+                "locCode": "A06",
+                "totalQty": 72,
+                "rowState": null,
+                "skuCode": "0000255653",
+                "shipNo": "T1911132678905"
+            },
+            {
+                "lotAtt06": "SZ总部1316020800302",
+                "rownum": "3f95a9d9-b8e3-4bf5-8a4c-04506a744bde",
+                "validFields": [
+                    "locCode",
+                    "lotAtt06",
+                    "qty",
+                    "shipNo",
+                    "skuCode",
+                    "skuName",
+                    "totalQty"
+                ],
+                "skuName": "MP85-S855 双桶洗衣机 灰色 门盖红色丝印 钢化玻璃 220V,1Ph 50Hz 　",
+                "qty": 72,
+                "locCode": "A15",
+                "totalQty": 84,
+                "rowState": null,
+                "skuCode": "0000255668",
+                "shipNo": "T1911132678905"
+            },
+            {
+                "lotAtt06": "SZ总部1316020800302",
+                "rownum": "9898633f-0f9a-4391-a063-0c309cd26184",
+                "validFields": [
+                    "locCode",
+                    "lotAtt06",
+                    "qty",
+                    "shipNo",
+                    "skuCode",
+                    "skuName",
+                    "totalQty"
+                ],
+                "skuName": "MP85-S855 双桶洗衣机 灰色 门盖红色丝印 钢化玻璃 220V,1Ph 50Hz 　",
+                "qty": 12,
+                "locCode": "A22",
+                "totalQty": 84,
+                "rowState": null,
+                "skuCode": "0000255668",
+                "shipNo": "T1911132678905"
+            },
+            {
+                "lotAtt06": "QZ总部1316020800303",
+                "rownum": "f9804daa-637a-497c-b015-936e27906e26",
+                "validFields": [
+                    "locCode",
+                    "lotAtt06",
+                    "qty",
+                    "shipNo",
+                    "skuCode",
+                    "skuName",
+                    "totalQty"
+                ],
+                "skuName": "MB55-V3006G 波轮全自动洗衣机 灰色 门盖透明烟灰 　 　 220V,1Ph 50Hz 　",
+                "qty": 12,
+                "locCode": "A06",
+                "totalQty": 72,
+                "rowState": null,
+                "skuCode": "0000255609",
+                "shipNo": "T1911132678912"
+            }
+        ],
+        "page": {
+            "currentCount": 0,
+            "totalCount": 4,
+            "currentPage": 1,
+            "limitCount": 0,
+            "totalPage": 1,
+            "sortField": null,
+            "sortOrder": null
+        }
+    },
+    "code": 0
+}
