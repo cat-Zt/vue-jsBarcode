@@ -19,7 +19,7 @@
         <div class="loading-warehouse-two">
             <div class="loading-warehouse-headline">
                 <dl>
-                    T+3下线直发提货单投单看板
+                    成品仓发货作业看板
                 </dl>
                 <dl>
                     <dd>
@@ -50,37 +50,71 @@
                     </div>
                 </div>
                 <div class="data-content">
+                    <div class="table-top">
+                        <div class="table-top-left">
+                            <el-checkbox-group v-model="checkList">
+                                <el-checkbox label="直发单"></el-checkbox>
+                                <el-checkbox label="中转单"></el-checkbox>
+                            </el-checkbox-group>
+                        </div>
+                        <div class="table-top-right">
+                            <el-input v-model="searchData"></el-input>
+                            <span><img src="./images/course.png" alt=""></span>
+                        </div>
+                    </div>
                     <div class="table-details">
-                        <el-table :row-class-name="rowclassname" class="table-forwarding" :data="allStatisticsData"
+                        <el-table class="table-forwarding" :data="allStatisticsData"
                             style="width: 100%; background: #040c31;" ref="tableData" :span-method="arraySpanMethod"
-                            height="calc(100vh - 8vw - 37px)">
-                            <el-table-column prop="doNo" label="发车单号" show-overflow-tooltip align="center">
-                            </el-table-column>
-                            <el-table-column prop="area" label="司机电话" show-overflow-tooltip align="center">
+                            height="calc(100vh - 12vw - 37px)">
+                            <el-table-column prop="doNo" label="提货单号" show-overflow-tooltip align="center">
                             </el-table-column>
                             <el-table-column prop="alarmLevel" label="车牌号" show-overflow-tooltip align="center">
+                            </el-table-column>
+                            <el-table-column prop="stall" label="车位" show-overflow-tooltip align="center">
+                            </el-table-column>
+                            <el-table-column prop="equip" label="出货通知单号" show-overflow-tooltip align="center">
+                            </el-table-column>
+                            <el-table-column prop="barcode" label="单据条形码" show-overflow-tooltip align="center">
                                 <template slot-scope="{row}">
                                     <span class="displ">
-                                        <vue-qr v-if="row.doNo" :value="row.doNo" class="qr-code-pic" background="#fff" :height="'20px'" :width="'1'"></vue-qr>
+                                        <vue-qr v-if="row.barcode" :value="row.barcode" class="qr-code-pic" background="#fff"
+                                            :height="'20px'" :width="'1'"></vue-qr>
                                     </span>
                                 </template>
                             </el-table-column>
-                            <el-table-column prop="alarmTime" label="投单时间" show-overflow-tooltip align="center">
-                            </el-table-column>
-                            <el-table-column prop="equip" label="总部订单号" show-overflow-tooltip align="center">
-                            </el-table-column>
                             <el-table-column prop="site" label="收货地址" show-overflow-tooltip align="center">
                             </el-table-column>
-                            <el-table-column prop="alarmValue" label="商品型号" show-overflow-tooltip align="center">
+                            <el-table-column prop="model" label="商品型号" show-overflow-tooltip align="center">
+                            </el-table-column>
+                            <el-table-column prop="alarmValue" label="库位" show-overflow-tooltip align="center">
                             </el-table-column>
                             <el-table-column prop="pointName" label="数量" show-overflow-tooltip align="center">
                             </el-table-column>
                         </el-table>
                     </div>
                     <div class="table-bottom">
-                        <span>投单20分钟内</span>
-                        <span>投单20-30分钟内</span>
-                        <span>投单超过30分钟内</span>
+                        <div>
+                            <span class="tab">仓库</span>
+                            <span class="selectClass">
+                                <el-select v-model="value1" multiple collapse-tags style="margin-left: 20px;"
+                                    placeholder="请选择仓库">
+                                    <el-option v-for="item in warehouseoptions" :key="item.value" :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </span>
+                        </div>
+                        <div>
+                            <span class="tab">装车位</span>
+                            <span class="selectClass">
+                                <el-select v-model="value2" multiple collapse-tags style="margin-left: 20px;"
+                                    placeholder="请选择装车位">
+                                    <el-option v-for="item in stalloptions" :key="item.value" :label="item.label"
+                                        :value="item.value">
+                                    </el-option>
+                                </el-select>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -206,204 +240,238 @@
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东01",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '11111111111',
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东02",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东03",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东04",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东05",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东06",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东07",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '11111111111',
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东08",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '11111111111',
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东10",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东11",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '11111111111',
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '11111111111',
                         class: 'one',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
@@ -412,46 +480,54 @@
                         area: "18004166123",
                         equip: "总部2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '222222222222',
                         class: 'two',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     },
                     {
                         doNo: '3333333333333',
                         class: 'three',
                         alarmLevel: "粤AA5342",
                         area: "18004166123",
-                        equip: "总部2334394844894949",
+                        equip: "2334394844894949",
                         pointName: "35",
-                        alarmValue: "TG100v120W@滚筒的豆腐脑了看到发v的绿地",
+                        alarmValue: "A01",
                         site: '河北省石家庄红旗数据库的烦恼是理库从技术上代理商',
-                        alarmTime: "2019-6-1 12:00:00",
-                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest'
+                        stall: "4东012",
+                        address1: 'https://segmentfault.com/a/1190000019198505?utm_source=tag-newest',
+                        model: '都是继承来开始打瞌睡删掉了开始锻炼',
+                        barcode: '123456789123456'
                     }
                 ],
                 // 发车单号
@@ -460,7 +536,46 @@
                 rowLine: [],
                 rowLinetwo: [],
                 rowLinethree: [],
-                clallStatisticsData: []
+                clallStatisticsData: [],
+                // 多选选中值
+                checkList: [],
+                // 看板搜索
+                searchData: '',
+                value1: [],
+                value2: [],
+                warehouseoptions: [
+                    {
+                        value: 'W2013585',
+                        label: '合肥洗衣机成品仓'
+                    }, {
+                        value: 'W2013588',
+                        label: '合肥洗衣机滚筒仓'
+                    }, {
+                        value: 'W2013587',
+                        label: '合肥洗衣机双桶仓'
+                    }, {
+                        value: 'W2013586',
+                        label: '合肥洗衣机成品仓'
+                    }, {
+                        value: 'W2013584',
+                        label: '合肥洗衣机成品仓'
+                    }
+                ],
+                stalloptions: [
+                    {
+                        value: '4东01',
+                        label: '4东01 4东01'
+                    }, {
+                        value: '4东02',
+                        label: '4东02 4东02'
+                    }, {
+                        value: '4东03',
+                        label: '4东03 4东03'
+                    }, {
+                        value: '4东04',
+                        label: '4东04 4东04'
+                    }
+                ]
             },
             methods: {
                 // 时间
@@ -670,16 +785,7 @@
                         }
                     });
                     return rowMerge;
-                },
-                rowclassname(row) {
-                    if (row.row.class === 'one') {
-                        return "twenty-row";
-                    } else if (row.row.class === 'two') {
-                        return "twentythirty-row";
-                    } else if (row.row.class === 'three') {
-                        return "exceedthirty-row";
-                    }
-                },
+                }
             },
             mounted() {
                 this.refreshData('cutDate', 1000, 'cutDateTime');
